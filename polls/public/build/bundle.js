@@ -1105,31 +1105,6 @@ var app = (function () {
             css: t => `opacity: ${t * o}`
         };
     }
-    function slide(node, { delay = 0, duration = 400, easing = cubicOut } = {}) {
-        const style = getComputedStyle(node);
-        const opacity = +style.opacity;
-        const height = parseFloat(style.height);
-        const padding_top = parseFloat(style.paddingTop);
-        const padding_bottom = parseFloat(style.paddingBottom);
-        const margin_top = parseFloat(style.marginTop);
-        const margin_bottom = parseFloat(style.marginBottom);
-        const border_top_width = parseFloat(style.borderTopWidth);
-        const border_bottom_width = parseFloat(style.borderBottomWidth);
-        return {
-            delay,
-            duration,
-            easing,
-            css: t => 'overflow: hidden;' +
-                `opacity: ${Math.min(t * 20, 1) * opacity};` +
-                `height: ${t * height}px;` +
-                `padding-top: ${t * padding_top}px;` +
-                `padding-bottom: ${t * padding_bottom}px;` +
-                `margin-top: ${t * margin_top}px;` +
-                `margin-bottom: ${t * margin_bottom}px;` +
-                `border-top-width: ${t * border_top_width}px;` +
-                `border-bottom-width: ${t * border_bottom_width}px;`
-        };
-    }
     function scale(node, { delay = 0, duration = 400, easing = cubicOut, start = 0, opacity = 0 } = {}) {
         const style = getComputedStyle(node);
         const target_opacity = +style.opacity;
@@ -2058,7 +2033,7 @@ var app = (function () {
     			div = element("div");
     			create_component(polldetails.$$.fragment);
     			t = space();
-    			add_location(div, file$3, 10, 12, 319);
+    			add_location(div, file$3, 10, 12, 312);
     			this.first = div;
     		},
     		m: function mount(target, anchor) {
@@ -2150,7 +2125,7 @@ var app = (function () {
     			}
 
     			attr_dev(div, "class", "poll-list svelte-31vrvu");
-    			add_location(div, file$3, 8, 0, 236);
+    			add_location(div, file$3, 8, 0, 229);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2226,7 +2201,6 @@ var app = (function () {
 
     	$$self.$capture_state = () => ({
     		fade,
-    		slide,
     		scale,
     		flip,
     		PollStore: pollStore,
