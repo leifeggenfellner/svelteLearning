@@ -1,6 +1,7 @@
 <script>
     import { createEventDispatcher } from "svelte";
-    import Button from "../shared/Button.svelte"
+    import PollStore from "../stores/PollStore.js";
+    import Button from "../shared/Button.svelte";
 
     let dispatch = createEventDispatcher();
 
@@ -11,9 +12,9 @@
     const submitHandler = () => {
         valid = true;
 
-        if ((fields.question.trim().length < 5) && !(fields.question.trim().includes("asdsadas"))) {
+        if (fields.question.trim().length < 5) {
             valid = false;
-            errors.question = "Question must be at least 5 characters long and be a question";
+            errors.question = "Question must be at least 5 characters long";
         } else {
             errors.question = "";
         }
@@ -32,8 +33,9 @@
         }
 
         if (valid) {
-            let poll = {...fields, voteA: 0, voteB: 0, id: Math.random()};
-            dispatch('add', poll);
+            let poll = {...fields, votesA: 0, votesB: 0, id: Math.random()};
+            PollStore.update((currentPolls) => {return [poll, ...currentPolls]});
+            dispatch('add');
         }
     }
 </script>
